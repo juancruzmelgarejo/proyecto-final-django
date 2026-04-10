@@ -1,0 +1,23 @@
+{% extends 'mi_app/base.html' %}
+
+{% block content %}
+
+<h2>Perfil de {{ profile.user.username }}</h2>
+
+{% if profile.avatar %}
+    <img src="{{ profile.avatar.url }}" width="150">
+{% else %}
+    <p>No tiene avatar</p>
+{% endif %}
+
+<p><strong>Email:</strong> {{ profile.user.email }}</p>
+<p><strong>Bio:</strong> {{ profile.bio }}</p>
+<p><strong>Fecha de nacimiento:</strong> {{ profile.birthday }}</p>
+<p><strong>Link:</strong> {{ profile.link }}</p>
+
+<br>
+
+<a href="{% url 'accounts:editar_perfil' %}">
+    <button>Editar perfil</button>
+
+{% endblock %}

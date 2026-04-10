@@ -1,0 +1,25 @@
+{% extends 'mi_app/base.html' %}
+
+{% block content %}
+
+<h2>Resultados de búsqueda</h2>
+
+<form method="GET">
+    <input type="text" name="q" placeholder="Buscar..." value="{{ query }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<hr>
+
+{% if resultados %}
+    {% for post in resultados %}
+        <h3>{{ post.titulo }}</h3>
+        <p>{{ post.contenido|truncatewords:20 }}</p>
+        <a href="{% url 'mi_app:detalle_post' post.id %}">Leer más</a>
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>No se encontraron resultados</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'mi_app/base.html' %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+    {% if post.imagen %}
+        <img src="{{ post.imagen.url }}" class="card-img-top" alt="{{ post.titulo }}">
+    {% endif %}
+
+    <div class="card-body">
+        <h1 class="card-title">{{ post.titulo }}</h1>
+        <h3 class="card-subtitle mb-3 text-muted">{{ post.subtitulo }}</h3>
+
+        <p class="card-text">{{ post.contenido }}</p>
+
+        <p><strong>Fecha:</strong> {{ post.fecha }}</p>
+
+        {% if post.autor %}
+            <p><strong>Autor:</strong> {{ post.autor.username }}</p>
+        {% endif %}
+
+        <a href="{% url 'mi_app:inicio' %}" class="btn btn-outline-primary">Volver</a>
+
+        {% if user.is_authenticated and post.autor == user %}
+            <a href="{% url 'mi_app:editar_post' post.id %}" class="btn btn-outline-secondary">Editar</a>
+            <a href="{% url 'mi_app:eliminar_post' post.id %}" class="btn btn-outline-danger">Eliminar</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

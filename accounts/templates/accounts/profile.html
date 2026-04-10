@@ -1,0 +1,35 @@
+{% extends 'mi_app/base.html' %}
+
+{% block content %}
+
+<div class="card p-4 shadow-sm">
+
+    <h2 class="mb-3">Perfil de {{ profile.user.username }}</h2>
+
+    {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" width="150" class="mb-3">
+    {% else %}
+        <p>No tiene avatar</p>
+    {% endif %}
+
+    <p><strong>Email:</strong> {{ profile.user.email }}</p>
+    <p><strong>Bio:</strong> {{ profile.bio }}</p>
+    <p><strong>Fecha de nacimiento:</strong> {{ profile.birthday }}</p>
+    <p><strong>Link:</strong> {{ profile.link }}</p>
+
+    <!-- 🔥 BOTONES -->
+    <div class="mt-4">
+
+        <a href="{% url 'accounts:editar_perfil' %}" class="btn btn-primary">
+            Editar perfil
+        </a>
+
+        <a href="{% url 'password_change' %}" class="btn btn-warning">
+            Cambiar contraseña
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
